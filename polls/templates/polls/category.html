@@ -1,0 +1,22 @@
+<h1>{{ category.name }}</h1>
+
+<h2>Polls in this category:</h2>
+
+{% if questions %}
+    <ul>
+        {% for question in questions %}
+            <li>
+                <a href="{% url 'polls:detail' question.id %}">
+                    {{ question.question_text }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>There are no polls in this category.</p>
+{% endif %}
+
+<br>
+
+<a href="{% url 'polls:index' %}">Back to all polls</a>

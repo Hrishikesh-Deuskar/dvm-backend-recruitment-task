@@ -1,0 +1,46 @@
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li>
+
+            <a href="{% url 'polls:detail' question.id %}">
+                {{ question.question_text }}
+            </a>
+
+            {% if question.category %}
+                -
+                <a href="{% url 'polls:category' question.category.id %}">
+                    {{ question.category.name }}
+                </a>
+            {% endif %}
+
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<h2>Categories</h2>
+
+{% if categories %}
+
+    <ul>
+
+    {% for category in categories %}
+
+        <li>
+            <a href="{% url 'polls:category' category.id %}">
+                {{ category.name }}
+            </a>
+        </li>
+
+    {% endfor %}
+
+    </ul>
+
+{% else %}
+
+    <p>No categories available.</p>
+
+{% endif %}
